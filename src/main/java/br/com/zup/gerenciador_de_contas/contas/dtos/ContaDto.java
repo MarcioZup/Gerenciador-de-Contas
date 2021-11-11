@@ -1,7 +1,8 @@
-package br.com.zup.gerenciador_de_contas.contas;
+package br.com.zup.gerenciador_de_contas.contas.dtos;
+
+import br.com.zup.gerenciador_de_contas.contas.models.Tipo;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class ContaDto {
 

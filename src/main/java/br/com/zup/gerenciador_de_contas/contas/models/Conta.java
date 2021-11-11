@@ -1,4 +1,4 @@
-package br.com.zup.gerenciador_de_contas.contas;
+package br.com.zup.gerenciador_de_contas.contas.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
