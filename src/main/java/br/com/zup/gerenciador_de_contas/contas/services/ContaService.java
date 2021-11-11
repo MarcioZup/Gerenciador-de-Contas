@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContaService {
@@ -32,8 +34,15 @@ public class ContaService {
         return contas;
     }
 
-    public Conta atualizarConta(Conta conta){
-        conta.setStatus(S);
+    public Conta atualizarConta(int id){
+        Optional<Conta>contalocalizada = contaRepository.findById(id);
+        if (contalocalizada.isPresent()){
+            contalocalizada.get().setStatus(Status.PAGO);
+            contalocalizada.get().setDataDePagamento(LocalDateTime.now());
+            contaRepository.save(contalocalizada.get());
+            return contalocalizada.get();
+        }
+        throw new RuntimeException("Não foi encontrada conta com esse ID");
     }
 
 }

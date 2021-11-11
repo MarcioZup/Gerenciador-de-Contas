@@ -43,4 +43,12 @@ public class ContaController {
         return contasDto;
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ContaDto atualizarStatus(@PathVariable int id, @RequestBody ContaDto contaDto){
+        Conta conta = contaService.atualizarConta(id);
+
+        return conta;
+    }
+
 }
