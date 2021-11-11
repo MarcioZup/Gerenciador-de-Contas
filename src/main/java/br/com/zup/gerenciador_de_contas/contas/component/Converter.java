@@ -1,4 +1,4 @@
-package br.com.zup.gerenciador_de_contas.contas;
+package br.com.zup.gerenciador_de_contas.contas.component;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
