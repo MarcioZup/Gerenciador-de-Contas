@@ -32,4 +32,8 @@ public class ContaService {
         return contas;
     }
 
+    public Conta atualizarConta(Conta conta){
+        conta.setStatus(S);
+    }
+
 }
