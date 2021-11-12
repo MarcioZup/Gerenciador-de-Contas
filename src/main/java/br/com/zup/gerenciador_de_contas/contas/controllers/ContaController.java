@@ -1,9 +1,6 @@
 package br.com.zup.gerenciador_de_contas.contas.controllers;
 
-import br.com.zup.gerenciador_de_contas.contas.dtos.AtualizarDto;
-import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDto;
-import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDtoList;
-import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDtoResposta;
+import br.com.zup.gerenciador_de_contas.contas.dtos.*;
 import br.com.zup.gerenciador_de_contas.contas.exceptions.ErroAtualizarStatusPago;
 import br.com.zup.gerenciador_de_contas.contas.models.Conta;
 import br.com.zup.gerenciador_de_contas.contas.models.Status;
@@ -54,7 +51,12 @@ public class ContaController {
             return contaDtoResposta;
         }
         throw new ErroAtualizarStatusPago("Opção não atualiza para PAGO");
+    }
 
+    @GetMapping("/{id}")
+    public ContaDtoCompleta exibirContaPorId(@PathVariable int id){
+        ContaDtoCompleta contaDtoCompleta = modelMapper.map(contaService.pesquisarContaPorID(id), ContaDtoCompleta.class);
+        return contaDtoCompleta;
     }
 
 }

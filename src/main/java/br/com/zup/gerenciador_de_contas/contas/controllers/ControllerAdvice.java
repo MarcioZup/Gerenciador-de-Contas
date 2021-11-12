@@ -1,5 +1,6 @@
 package br.com.zup.gerenciador_de_contas.contas.controllers;
 
+import br.com.zup.gerenciador_de_contas.contas.exceptions.ContaNaoExisteException;
 import br.com.zup.gerenciador_de_contas.contas.exceptions.ErroAtualizarStatusPago;
 import br.com.zup.gerenciador_de_contas.contas.exceptions.MensagemDeErro;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,12 @@ public class ControllerAdvice {
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public MensagemDeErro erroAtualizarStatusPago(ErroAtualizarStatusPago erroAtualizarStatusPago){
         return new MensagemDeErro(erroAtualizarStatusPago.getMessage());
+    }
+
+    @ExceptionHandler(ContaNaoExisteException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public MensagemDeErro contaNaoExisteException(ContaNaoExisteException contaNaoExisteException){
+        return new MensagemDeErro(contaNaoExisteException.getMessage());
     }
 
 }
