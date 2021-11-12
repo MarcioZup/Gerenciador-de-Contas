@@ -1,6 +1,7 @@
 package br.com.zup.gerenciador_de_contas.contas.services;
 
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDtoResposta;
+import br.com.zup.gerenciador_de_contas.contas.exceptions.ContaNaoExisteException;
 import br.com.zup.gerenciador_de_contas.contas.models.Conta;
 import br.com.zup.gerenciador_de_contas.contas.models.Status;
 import br.com.zup.gerenciador_de_contas.contas.repository.ContaRepository;
@@ -43,6 +44,16 @@ public class ContaService {
             return contalocalizada.get();
         }
         throw new RuntimeException("Não foi encontrada conta com esse ID");
+    }
+
+    public Conta pesquisarContaPorID(int id){
+        Optional<Conta> contaOptional = contaRepository.findById(id);
+
+        if (contaOptional.isPresent()){
+            return contaOptional.get();
+        }
+        throw new ContaNaoExisteException("Não existe uma conta com o Id digitado");
+
     }
 
 }
