@@ -1,32 +1,23 @@
-package br.com.zup.gerenciador_de_contas.contas.models;
+package br.com.zup.gerenciador_de_contas.contas.dtos;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import br.com.zup.gerenciador_de_contas.contas.models.Status;
+import br.com.zup.gerenciador_de_contas.contas.models.Tipo;
 
-import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
+import javax.persistence.Column;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "contas")
-public class Conta {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ContaDtoCompleta {
+
     private int id;
-    @Column(nullable = false)
     private String nome;
-    @Column(nullable = false)
     private double valor;
-    @Column(nullable = false)
     private Tipo tipo;
     private Status status;
-    @Column(nullable = false)
     private LocalDate dataDeVencimento;
     private LocalDateTime dataDePagamento;
 
-    public Conta() {
+    public ContaDtoCompleta() {
     }
 
     public int getId() {
