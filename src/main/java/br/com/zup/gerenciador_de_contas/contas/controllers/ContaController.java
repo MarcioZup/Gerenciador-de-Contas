@@ -4,6 +4,7 @@ import br.com.zup.gerenciador_de_contas.contas.dtos.AtualizarDto;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDto;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDtoList;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDtoResposta;
+import br.com.zup.gerenciador_de_contas.contas.exceptions.ErroAtualizarStatusPago;
 import br.com.zup.gerenciador_de_contas.contas.models.Conta;
 import br.com.zup.gerenciador_de_contas.contas.models.Status;
 import br.com.zup.gerenciador_de_contas.contas.services.ContaService;
@@ -52,7 +53,7 @@ public class ContaController {
             ContaDtoResposta contaDtoResposta = modelMapper.map(conta, ContaDtoResposta.class);
             return contaDtoResposta;
         }
-        throw new RuntimeException("Opção não atualiza para PAGO");
+        throw new ErroAtualizarStatusPago("Opção não atualiza para PAGO");
 
     }
 

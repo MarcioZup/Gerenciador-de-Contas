@@ -1,6 +1,11 @@
 package br.com.zup.gerenciador_de_contas.contas.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -11,8 +16,10 @@ public class Conta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false)
+
     private String nome;
     @Column(nullable = false)
+
     private double valor;
     @Column(nullable = false)
     private Tipo tipo;
