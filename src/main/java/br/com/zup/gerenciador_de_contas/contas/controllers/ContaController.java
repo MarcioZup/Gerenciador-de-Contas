@@ -1,9 +1,11 @@
 package br.com.zup.gerenciador_de_contas.contas.controllers;
 
+import br.com.zup.gerenciador_de_contas.contas.dtos.AtualizarDto;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDto;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDtoList;
 import br.com.zup.gerenciador_de_contas.contas.dtos.ContaDtoResposta;
 import br.com.zup.gerenciador_de_contas.contas.models.Conta;
+import br.com.zup.gerenciador_de_contas.contas.models.Status;
 import br.com.zup.gerenciador_de_contas.contas.services.ContaService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 
 @RestController
@@ -45,10 +46,14 @@ public class ContaController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ContaDto atualizarStatus(@PathVariable int id, @RequestBody ContaDto contaDto){
+    public ContaDtoResposta atualizarStatus(@PathVariable int id, @RequestBody AtualizarDto atualizarDto){
         Conta conta = contaService.atualizarConta(id);
+        if (atualizarDto.getStatus() == Status.PAGO){
+            ContaDtoResposta contaDtoResposta = modelMapper.map(conta, ContaDtoResposta.class);
+            return contaDtoResposta;
+        }
+        throw new RuntimeException("Opção não atualiza para PAGO");
 
-        return conta;
     }
 
 }

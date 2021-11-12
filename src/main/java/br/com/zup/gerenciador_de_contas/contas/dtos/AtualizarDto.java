@@ -6,8 +6,7 @@ public class AtualizarDto {
 
     private Status status;
 
-    public AtualizarDto(Status status) {
-        this.status = status;
+    public AtualizarDto() {
     }
 
     public Status getStatus() {
